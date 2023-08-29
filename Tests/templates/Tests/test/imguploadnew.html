@@ -1,0 +1,54 @@
+{% extends 'Accounts/Layouts/base.html' %}
+{% load static %}
+
+{% block exstrastyles %}
+<link href="{% static 'Tests/css/listview.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1>Webcam Image Upload</h1>
+<form id="image-form" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" id="image-input" name="image" accept="image/*" style="display: none;">
+  <button class="btn btn-primary" onclick="var e=this;setTimeout(function(){e.disabled=true;},0);return true;" id="capture-btn" type="button">Capture Image</button>
+  <button class="btn btn-primary" id="upload-btn" type="submit">Upload</button>
+</form>
+<video id="video" autoplay></video>
+<canvas id="canvas" style="display: none;"></canvas>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const captureBtn = document.getElementById('capture-btn');
+  const uploadBtn = document.getElementById('upload-btn');
+  const imageInput = document.getElementById('image-input');
+  
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(err => console.error('Failed to access webcam:', err));
+  
+  captureBtn.addEventListener('click', () => {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    const context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    canvas.toBlob(blob => {
+      const file = new File([blob], 'captured_image.png', { type: 'image/png' });
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      imageInput.files = dataTransfer.files;
+    }, 'image/png');
+  });
+  
+  
+
+</script>
+
+{% endblock javascripts %}
+ 
+

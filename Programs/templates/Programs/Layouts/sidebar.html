@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="sidebar d-flex">
+    <!-- Sidebar content -->
+    <ul class="sidebar-menu">
+        <li><h5><a href="{% url 'Tests:listview' %}">Tests</a></h5></li>
+        <li><h5><a  href="{% url 'Programs:listview' %}">Programs</a></h5></li>
+    </ul>
+    
+    <!-- Close button -->
+    <div class="sidebar-close-btn" onclick="toggleSidebar()">&times;</div>
+</div>

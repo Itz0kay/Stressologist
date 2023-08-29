@@ -1,0 +1,36 @@
+{% extends 'Accounts/Layouts/base.html' %}
+{% load static %}
+
+{% block exstrastyles %}
+<link href="{% static 'Accounts/css/index.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+    <div style="margin-bottom: 10px;">
+    {% include 'Accounts/Layouts/navigation_light.html' %}
+    </div>
+{% endblock header %}
+
+{% block content %}
+<header>
+  <div class="page-header min-vh-100">
+    <div class="oblique position-absolute top-0 h-100 d-md-block d-none">
+      <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url({% static 'Accounts/img/index-image.jpg' %})"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+          <h1 class="text-gradient text-primary">Your key to stress recognition, </h1>
+          <h1 class="mb-4">and the gateway to finding serenity</h1>
+          <p class="lead pe-5 me-5">Discover the art of stress recognition through the lens of Stressologist, and unlock the secrets to a calmer, more balanced life</p>
+          <div class="buttons">
+            <a href="{% url 'Accounts:login' %}" class="btn bg-gradient-primary mt-4">Read more</a>
+            <a href="{% url 'Accounts:register' %}" class="btn text-primary shadow-none mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% endblock %}

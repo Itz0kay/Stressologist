@@ -1,0 +1,19 @@
+{% load static %}
+<nav class="navbar">
+    <div class="navbar-menu-toggle" onclick="toggleSidebar()">&#9776;</div>
+    <div class="navbar-brand"  href="{% url 'Accounts:home' %}">Stressologist</div>
+    <div class="navbar-info">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{% url 'Accounts:logout' %}" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{request.user|upper}}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Hello, {{request.user}}</a></li>
+              <li><a class="dropdown-item" href="{% url 'Accounts:logout' %}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+</nav>
+

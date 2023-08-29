@@ -1,0 +1,41 @@
+{% extends 'Accounts/Layouts/base.html' %}
+{% load static %}
+
+{% block exstrastyles %}
+{% comment %} <link href="{% static 'Accounts/css/login.min.css' %}" rel="stylesheet"> {% endcomment %}
+{% endblock %}
+
+{% block content %}
+{% extends 'Accounts/Layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for item in programs %}
+  <!-- -------- START HEADER 1 w/ text and image on right ------- -->
+  <header class="my-5">
+    <div class="page-header min-vh-50">
+      <div class="oblique position-absolute top-0 h-100 d-md-block d-none">
+        <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('{% static "Accounts/img/meeting.jpg" %}')"></div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+            <h1 class="text-gradient text-primary">{{item.name}}</h1>
+            <h1 class="mb-4">Soft Design System</h1>
+            <p class="lead pe-5 me-5">{{item.desc}}</p>
+            <div class="buttons">
+              <button type="button" class="btn bg-gradient-primary mt-4">Get Started</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  {% endfor %}
+  
+
+{% endblock %}
+
+{% endblock %}

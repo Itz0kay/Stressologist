@@ -1,0 +1,64 @@
+{% extends 'Accounts/Layouts/base.html' %}
+{% load static %}
+
+{% block exstrastyles %}
+<link href="{% static 'Tests/css/listview.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-end">
+    <div class="btn btn-primary create-button">
+      <a class="text-white" href="{% url 'Tests:imageupload' %}">Create</a>
+    </div>
+</div>
+  
+
+<div class="row">
+
+    {% for c in cards %}
+    
+    
+    <div class="col-2 m-3 p-3">
+      <div class="card">
+        <div class="container-sm mt-5 h-100 d-flex justify-content-center"><h3 class="
+          {% if c.stresslevel > 74 %}
+          bg-primary
+          {% else %}
+          bg-secondary
+          {% endif %}
+          rounded-3 p-4 text-white">{{c.stresslevel}} % </h3></div>
+        
+        <div class="position-relative" style="height: 50px;overflow: hidden;margin-top: -50px;z-index:2;position: relative;">
+          <div class="position-absolute w-100 top-0" style="z-index: 1;">
+              <svg class="waves waves-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                  <path id="card-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                </defs>
+                <g class="moving-waves">
+                  <use xlink:href="#card-wave" x="48" y="-1" fill="rgba(255,255,255,0.30"></use>
+                  <use xlink:href="#card-wave" x="48" y="3" fill="rgba(255,255,255,0.35)"></use>
+                  <use xlink:href="#card-wave" x="48" y="5" fill="rgba(255,255,255,0.25)"></use>
+                  <use xlink:href="#card-wave" x="48" y="8" fill="rgba(255,255,255,0.20)"></use>
+                  <use xlink:href="#card-wave" x="48" y="13" fill="rgba(255,255,255,0.15)"></use>
+                  <use xlink:href="#card-wave" x="48" y="16" fill="rgba(255,255,255,0.99)"></use>
+                </g>
+              </svg>
+            </div>
+        </div>
+        <div class="card-body">
+          <h4>
+            Stress Level
+          </h4>
+          <p>{{c.cwhen}}
+          </p>
+        </div>
+      </div>
+    </div>
+       
+    {% if forloop.counter|divisibleby:5 %}</div><div class="row">{% endif %}  {# HERE #}
+    
+    {% endfor %}
+    
+</div>
+
+{% endblock %}
